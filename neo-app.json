@@ -1,0 +1,59 @@
+{
+  "routes": [
+    {
+      "path": "/webapp/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/webapp/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/com.sap.iotservices.mms/v1/",
+      "target": {
+        "type": "destination",
+        "name": "iot-internet-http"
+      },
+      "description": "SAP HANA Cloud Platform IoT Service API"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "SDI",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "SDI"
+    }
+  ],
+  "welcomeFile": "/webapp/test/flpSandbox.html",
+  "sendWelcomeFileRedirect": true
+}

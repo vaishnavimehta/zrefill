@@ -1,0 +1,30 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSO_IOT_REV_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Trigger" sap:content-version="1">
+				<Key><PropertyRef Name="SENSOR"/></Key><Property Name="SENSOR" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="WEIGHT" Type="Edm.Float" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIMESTAMP" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TOLERANCE" Type="Edm.Float" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="SORDER" sap:content-version="1">
+				<Key><PropertyRef Name="SENSOR"/></Key><Property Name="SENSOR" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SO" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SHIPTO" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SDATE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Main" sap:content-version="1">
+				<Key><PropertyRef Name="Name"/></Key><Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Petrol Station Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Capacity" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Petrol Station Capac" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="Curr" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Petrol Station Capac" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="ZSO_IOT_REV_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="TriggerSet" EntityType="ZSO_IOT_REV_SRV.Trigger" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="SORDERSet" EntityType="ZSO_IOT_REV_SRV.SORDER" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="MainSet" EntityType="ZSO_IOT_REV_SRV.Main" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://192.168.139.61:8000/sap/opu/odata/sap/ZSO_IOT_REV_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="http://192.168.139.61:8000/sap/opu/odata/sap/ZSO_IOT_REV_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

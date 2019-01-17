@@ -1,0 +1,181 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "ts.zrefill",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"resources": "resources.json",
+		"dataSources": {
+			"mainService": {
+				"uri": "/com.sap.iotservices.mms/v1/com.sap.iotservices.mms/v1/api/http/app.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"ZSO_IOT_REV_SRV": {
+				"uri": "/sap/opu/odata/sap/ZSO_IOT_REV_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZSO_IOT_REV_SRV/metadata.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://task",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "ts.zrefill.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ushell": {},
+				"sap.collaboration": {
+					"lazy": true
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "ts.zrefill.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true
+			},
+			"json": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"oAbap": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZSO_IOT_REV_SRV",
+				"preload": true
+			}
+		},
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService",
+				"lazy": false,
+				"settings": {
+					"setTitle": "auto"
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "ts.zrefill.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"notFound"
+					]
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "worklist",
+					"target": [
+						"worklist"
+					]
+				},
+				{
+					"pattern": "T_IOT_E5EA0ACDEC831C5F0D3A/{objectId}",
+					"name": "object",
+					"target": [
+						"object"
+					]
+				},
+                {
+                    "name": "anlytics",
+                    "pattern": "anlytics/{objId}",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "anlytics"
+                    ]
+                }
+			],
+			"targets": {
+				"worklist": {
+					"viewName": "Worklist",
+					"viewId": "worklist",
+					"viewLevel": 1,
+					"title": "{i18n>worklistViewTitle}"
+				},
+				"object": {
+					"viewName": "Object",
+					"viewId": "object",
+					"viewLevel": 2,
+					"title": "{i18n>objectViewTitle}"
+				},
+				"objectNotFound": {
+					"viewName": "ObjectNotFound",
+					"viewId": "objectNotFound"
+				},
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound"
+				},
+                "anlytics": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Analytics",
+                    "viewLevel": 2,
+
+                    "controlAggregation": "pages"
+                }
+			}
+		}
+	}
+}

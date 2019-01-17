@@ -1,0 +1,101 @@
+<mvc:View controllerName="ts.zrefill.controller.Analytics" xmlns="sap.suite.ui.commons" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:layout="sap.ui.layout" xmlns:mc="sap.suite.ui.microchart" height="100%" xmlns:core="sap.ui.core"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data">
+	<m:Page class="sapDemokitSuiteChartContainerFixFlex" title="Details" enableScrolling="false">
+		<m:content>
+			<layout:FixFlex class="fixFlexHorizontal" vertical="false" fixContentSize="40%">
+				<layout:fixContent>
+					<m:VBox class="sapUiMediumMarginBegin">
+						<ChartContainer class="sapUiResponsiveContentPadding" id="chartContainer1" showFullScreen="true" showPersonalization="true"
+							autoAdjustHeight="true" personalizationPress="attachPersonalizationPress" contentChange="attachContentChange" title="Well Level">
+							<content>
+								<ChartContainerContent icon="sap-icon://line-chart" title="Line Chart">
+									<content>
+										<m:FlexBox width="30cm" height="7cm" class="sapUiSmallMargin">
+											<m:items>
+												<mc:InteractiveLineChart id="interactiveLineChart1"></mc:InteractiveLineChart>
+											</m:items>
+										</m:FlexBox>
+									</content>
+								</ChartContainerContent>
+								<ChartContainerContent icon="sap-icon://table-view" title="Table">
+									<content>
+										<m:Table id="chartContainerContentTable1" items="{path : 'json>/ltModel'}">
+											<m:columns>
+												<m:Column id="time">
+													<m:Text text="Time" id="timeCol"/>
+												</m:Column>
+												<m:Column id="level">
+													<m:Text text="Level" id="levelCol"/>
+												</m:Column>
+											</m:columns>
+											<m:items>
+												<m:ColumnListItem>
+													<m:cells>
+														<m:Text text="{json>time}"/>
+														<m:Text text="{ path: 'json>level', formatter: '.formatter.numberUnit'}"/>
+													</m:cells>
+												</m:ColumnListItem>
+											</m:items>
+										</m:Table>
+									</content>
+								</ChartContainerContent>
+							</content>
+						</ChartContainer>
+						<m:HBox class="sapUiMediumMarginBegin">
+							<m:Button text="Live" type="Accept" press="onStart" width="5.5cm" visible="false" id="btnStart"></m:Button>
+							<m:Button text="Stop" type="Reject" press="onExit" width="5.5cm" visible="false" id="btnStop" enabled="false"></m:Button>
+						</m:HBox>
+					</m:VBox>
+				</layout:fixContent>
+				<layout:flexContent>
+					<ChartContainer class="sapUiResponsiveContentPadding" id="chartContainer" showFullScreen="true" showPersonalization="true"
+						autoAdjustHeight="true" personalizationPress="attachPersonalizationPress" contentChange="attachContentChange" title="Activities">
+						<dimensionSelectors>
+							<m:Select id="idoSelect1" change="handleSelectionChange">
+								<core:Item key="a" text="This week"/>
+								<core:Item key="b" text="This month"/>
+							</m:Select>
+						</dimensionSelectors>
+						<content>
+							<ChartContainerContent icon="sap-icon://line-chart" title="Line Chart">
+								<content>
+									<m:FlexBox width="50%" height="50%" alignItems="Center" class="sapUiSmallMargin">
+										<m:items>
+									<!--<viz:VizFrame id="interactiveLineChart" height="100%" width="100%" vizType="dual_timeseries_combination"></viz:VizFrame>-->
+									<!--<mc:InteractiveLineChart id="interactiveLineChart"></mc:InteractiveLineChart>-->
+									<viz:VizFrame height="250px" id="interactiveLineChart"  vizType='combination'>
+										<viz:dataset>
+											<viz.data:FlattenedDataset data="{path : 'json>/actModel'}">
+												<viz.data:dimensions>
+													<viz.data:DimensionDefinition name="Date" value="{json>Date}"/>
+												</viz.data:dimensions>
+												<viz.data:measures>
+													<viz.data:MeasureDefinition name="Level" value="{json>Level}"/>
+													<viz.data:MeasureDefinition name="Sales" value="{json>Sales}"/>
+												</viz.data:measures>
+											</viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Level"/>
+											<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Sales"/>
+											<viz.feeds:FeedItem id="feedCategoryAxis" uid="categoryAxis" type="Dimension" values="Date"/>
+										</viz:feeds>
+									</viz:VizFrame>
+										</m:items>
+									</m:FlexBox>
+								</content>
+							</ChartContainerContent>
+							<ChartContainerContent icon="sap-icon://table-view" title="Table">
+								<content>
+									<m:Table id="chartContainerContentTable"></m:Table>
+								</content>
+							</ChartContainerContent>
+						</content>
+					</ChartContainer>
+				</layout:flexContent>
+			</layout:FixFlex>
+		</m:content>
+	</m:Page>
+</mvc:View>

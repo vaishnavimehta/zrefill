@@ -1,0 +1,73 @@
+<mvc:View controllerName="ts.zrefill.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:micro="sap.suite.ui.microchart">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+		<semantic:titleHeading>
+			<Title text="{i18n>worklistTitle}"/>
+		</semantic:titleHeading>
+		<semantic:content>
+			<Table id="table" width="auto" items="{path:'json>/lineModel'}" noDataText="{tableNoDataText}" growing="true" growingScrollToLoad="true"
+				updateFinished=".onUpdateFinished" enableBusyIndicator="true">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+						<ToolbarSpacer/>
+						<!--<SearchField-->
+						<!--	id="searchField"-->
+						<!--	tooltip="{i18n>worklistSearchTooltip}"-->
+						<!--	search=".onSearch"-->
+						<!--	width="auto">-->
+						<!--</SearchField>-->
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="nameColumn">
+						<Text text="Station" id="nameColumnTitle"/>
+					</Column>
+					<Column id="unitNumberColumn">
+						<Text text="Capacity(Ga)" id="unitNumberColumnTitle"/>
+					</Column>
+					<Column id="eodStk">
+						<Text text="Stock(closing)" id="closing"/>
+					</Column>	
+					<Column id="cStk">
+						<Text text="Current Stock(Ga)" id="cStkTitle"/>
+					</Column>
+					<Column id="cSales">
+						<Text text="Sale($)" id="SalesTitle"/>
+					</Column>
+					<Column id="cRad">
+						<Text text="Consumption(%)" id="perTitle"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press=".onPress">
+						<cells>
+							<!--<ObjectIdentifier title="{json>Name}"/>-->
+							<!--<ObjectNumber number="{ path: 'json>Capacity', formatter: '.formatter.numberUnit' }"/>-->
+							<Text text="{json>Name}"/>
+							<Text text="{ path: 'json>Capacity', formatter: '.formatter.numberUnit'}"/>
+							<Text text="{ path: 'json>Eod', formatter: '.formatter.numberUnit' }"/>
+							<Text text="{ path: 'json>Curr', formatter: '.formatter.numberUnit' }"/>
+							<Text text="{ path: 'json>Value', formatter: '.formatter.numberUnit' }"/>
+							<FlexBox height="70px" width="70px">
+								<layoutData>
+									<FlexItemData maxHeight="70px"/>
+								</layoutData>
+								<micro:RadialMicroChart percentage="{json>Perc}" valueColor="{json>Col}"/>
+							</FlexBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press=".onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{worklistView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:SemanticPage>
+</mvc:View>
