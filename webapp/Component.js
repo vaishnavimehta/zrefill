@@ -7,9 +7,10 @@ sap.ui.define([
 	"use strict";
 
 	return UIComponent.extend("ts.zrefill.Component", {
-
+ 
 		metadata : {
-			manifest: "json"
+			manifest: "json",
+			includes:["css/style.css"]
 		},
 
 		/**

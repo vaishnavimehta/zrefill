@@ -125,7 +125,7 @@ sap.ui.define([
 			var oModel2 = new sap.ui.model.odata.ODataModel(
 				'/sap/opu/odata/sap/ZSO_VEH_SRV', true);
 			var oArray2;
-			oModel2.read("/VehicleSet(SO='1298')", null, [],
+			oModel2.read("/VehicleSet(SO='" + oArray1.SO + "')", null, [],
 				false,
 				function (oData, oResponse) {
 					oArray2 = oData;

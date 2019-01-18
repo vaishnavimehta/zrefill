@@ -31,8 +31,9 @@
 
 .w3-black,
 .w3-hover-black:hover {
-    color: #fff!important;
-    background-color: #126364 !important
+    color: black!important;
+    background-color: #fafafa !important 
+    /*"#c4d5e7"*/
 }
 
 .w3-hover-dark:hover {
@@ -77,15 +78,15 @@
 }
 
 .diff {
-    background-color: #168282 !important
+    background-color: #eff4f8 !important
 }
 
 .ip {
-    width: 23.1%!important;
+    width: 22.1%!important;
 }
 
 .w50 {
-    width: 48%!important;
+    width: 47%!important;
 }
 
 #map {
