@@ -1,0 +1,102 @@
+/* Enter your custom styles here */
+
+.w3-bar {
+    width: 100%;
+    overflow: hidden;
+    font-size: 22px;
+}
+
+.w3-bar {
+    display: inline-block;
+}
+
+.w3-bar .w3-bar-item {
+    padding: 8px 16px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+}
+
+.w3-bar .w3-dropdown-hover,
+.w3-bar .w3-dropdown-click {
+    position: static;
+    float: left
+}
+
+.w3-bar .w3-button {
+    white-space: normal
+}
+
+.w3-black,
+.w3-hover-black:hover {
+    color: #fff!important;
+    background-color: #126364 !important
+}
+
+.w3-hover-dark:hover {
+    color: white!important;
+    background-color: #333333!important;
+    font-size: 23px;
+}
+
+.w3-bar .w3-bar-item {
+    padding: 8px 16px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0
+}
+
+.w3-bar-block .w3-bar-item {
+    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    float: none;
+    outline: 0
+}
+
+.w3-bar-block.w3-center .w3-bar-item {
+    text-align: center
+}
+
+.w3-block {
+    display: block;
+    width: 100%
+}
+
+.w3-bar-item.w3-mobile,
+.w3-dropdown-hover.w3-mobile,
+.w3-dropdown-click.w3-mobile {
+    text-align: center
+}
+
+.diff {
+    background-color: #168282 !important
+}
+
+.ip {
+    width: 23.1%!important;
+}
+
+.w50 {
+    width: 48%!important;
+}
+
+#map {
+    width: 100%;
+}
+
+.w3-bar-item {
+    border: 1px solid white !important;
+    border-right: 0;
+}
+
+.seltext {
+    padding: 5px;
+}

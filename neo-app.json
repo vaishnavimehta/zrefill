@@ -51,7 +51,7 @@
         "name": "SDI1709",
         "entryPath": "/sap/opu/odata"
       },
-      "description": "SDI"
+      "description": "SDI1709"
     }
   ],
   "welcomeFile": "/webapp/test/flpSandbox.html",

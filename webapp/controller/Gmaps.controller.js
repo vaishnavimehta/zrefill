@@ -82,17 +82,17 @@ sap.ui.define([
 						var eta = document.getElementById('eta');
 						eta.innerHTML = '<u>ETA:</u><br>' + myRoute.duration.text;
 						var distance = document.getElementById('distance');
-						distance.innerHTML = '<u>Distance:</u><br>'+myRoute.distance.text;
+						distance.innerHTML = '<u>Distance:</u><br>' + myRoute.distance.text;
 						var origin = document.getElementById('origin');
 						origin.innerHTML = '<u>Current Address:</u><br>' + myRoute.start_address;
 						var destination = document.getElementById('destination');
-						destination.innerHTML = '<u>Destination Address:</u><br>'+myRoute.end_address;
+						destination.innerHTML = '<u>Destination Address:</u><br>' + myRoute.end_address;
 						// var TS= document.getElementById('TS');
 						// TS.innerHTML += newloc.C_TIMESTAMP;
 						var lat = document.getElementById('lat');
-						lat.innerHTML = '<u>lat:</u><br>'+newloc.C_LOCLAT;
+						lat.innerHTML = '<u>lat:</u><br>' + newloc.C_LOCLAT;
 						var long = document.getElementById('long');
-						long.innerHTML = '<u>long:</u><br>'+newloc.C_LOCLONG;
+						long.innerHTML = '<u>long:</u><br>' + newloc.C_LOCLONG;
 
 					} else {
 						// window.alert("error");
@@ -104,10 +104,20 @@ sap.ui.define([
 
 		_onObjectMatched: function (oEvent) {
 				var id = oEvent.getParameter("arguments").ids;
+				var SSen = oEvent.getParameter("arguments").SSen;
 				var SO = oEvent.getParameter("arguments").SO;
 				var STo = oEvent.getParameter("arguments").STo;
 				var SDate = oEvent.getParameter("arguments").SDate;
-				window.alert(id);
+				
+				// window.alert(id);
+				var distance = document.getElementById('SSen');
+				distance.innerHTML = '<u>Sensor:</u><br>' + SSen;
+				var distance = document.getElementById('SO');
+				distance.innerHTML = '<u>SO:</u><br>' + SO;
+				var distance = document.getElementById('STo');
+				distance.innerHTML = '<u>Ship To:</u><br>' + STo;
+				var distance = document.getElementById('SDate');
+				distance.innerHTML = '<u>Ship Date:</u><br>' + SDate;
 
 				var that = this;
 				$.ajax({

@@ -26,6 +26,14 @@
 					"odataVersion": "2.0",
 					"localUri": "localService/ZSO_IOT_REV_SRV/metadata.xml"
 				}
+			},
+			"ZSO_VEH_SRV": {
+				"uri": "/sap/opu/odata/sap/ZSO_VEH_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZSO_VEH_SRV/metadata.xml"
+				}
 			}
 		},
 		"sourceTemplate": {
@@ -95,6 +103,16 @@
 				},
 				"dataSource": "ZSO_IOT_REV_SRV",
 				"preload": true
+			},
+			"vmodel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZSO_VEH_SRV",
+				"preload": true
 			}
 		},
 		"services": {
@@ -146,7 +164,7 @@
 				},
 				{
 					"name": "RouteView1",
-					"pattern": "RouteView1/{ids}/{SO}/{STo}/{SDate}",
+					"pattern": "RouteView1/{ids}/{SSen}/{SO}/{STo}/{SDate}",
 					"target": [
 						"TargetView1"
 					]

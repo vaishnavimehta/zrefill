@@ -15,8 +15,7 @@ sap.ui.define([
 		 * @memberOf ts.zrefill.view.Analytics
 		 */
 		onInit: function () {
-			
-			
+
 			this.getOwnerComponent().getRouter().getRoute("anlytics").attachPatternMatched(this._onMatched, this);
 
 		},
@@ -103,17 +102,50 @@ sap.ui.define([
 		gmapTrack: function () {
 			// alert()
 			var id;
-			var c_veh = "VEH1";
-			if (c_veh == "VEH1")
+			// var c_veh = "VEH1";
+			// if (c_veh == "VEH1")
+			// 	id = "d196f6b4-a5c8-4873-b1b9-ad89b2e6c211";
+			// else
+			// 	id = "3fbe0032-e802-406a-9b9d-552d2f94d3b3";
+
+			
+
+			var oModel1 = new sap.ui.model.odata.ODataModel(
+				'/sap/opu/odata/sap/ZSO_IOT_SRV', true);
+			var oArray1;
+			oModel1.read("/SORDERSet(SENSOR='" + objId + "')", null, [],
+				false,
+				function (oData, oResponse) {
+					oArray1 = oData;
+				});
+				
+				
+				// window.alert(objId+" "+oArray1.SO);
+
+			var oModel2 = new sap.ui.model.odata.ODataModel(
+				'/sap/opu/odata/sap/ZSO_VEH_SRV', true);
+			var oArray2;
+			oModel2.read("/VehicleSet(SO='1298')", null, [],
+				false,
+				function (oData, oResponse) {
+					oArray2 = oData;
+				});
+				
+				if (oArray2.VEH == "VEH1")
 				id = "d196f6b4-a5c8-4873-b1b9-ad89b2e6c211";
 			else
 				id = "3fbe0032-e802-406a-9b9d-552d2f94d3b3";
+				
+				
+			// window.alert(oArray1.SENSOR+" "+oArray1.SO+" "+oArray1.SHIPTO+" "+oArray1.SDATE+" "+oArray2.VEH);
+
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("RouteView1", {
 				ids: id,
-				SO: "2000",
-				STo: "Hello",
-				SDate: "20-10-2020"
+				SSen: oArray1.SENSOR,
+				SO: oArray1.SO,
+				STo: oArray1.SHIPTO,
+				SDate: oArray1.SDATE
 			});
 		},
 		/**
