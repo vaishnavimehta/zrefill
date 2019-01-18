@@ -135,17 +135,30 @@
 						"object"
 					]
 				},
-                {
-                    "name": "anlytics",
-                    "pattern": "anlytics/{objId}",
-                    "titleTarget": "",
-                    "greedy": false,
-                    "target": [
-                        "anlytics"
-                    ]
-                }
+				{
+					"name": "anlytics",
+					"pattern": "anlytics/{objId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"anlytics"
+					]
+				},
+				{
+					"name": "RouteView1",
+					"pattern": "RouteView1/{ids}/{SO}/{STo}/{SDate}",
+					"target": [
+						"TargetView1"
+					]
+				}
 			],
 			"targets": {
+				"TargetView1": {
+					"viewType": "HTML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Gmaps"
+				},
 				"worklist": {
 					"viewName": "Worklist",
 					"viewId": "worklist",
@@ -166,15 +179,18 @@
 					"viewName": "NotFound",
 					"viewId": "notFound"
 				},
-                "anlytics": {
-                    "viewType": "XML",
-                    "transition": "slide",
-                    "clearAggregation": true,
-                    "viewName": "Analytics",
-                    "viewLevel": 2,
-
-                    "controlAggregation": "pages"
-                }
+				"anlytics": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Analytics",
+					"viewLevel": 2,
+					"controlAggregation": "pages"
+				},
+				"Gmaps": {
+					"viewType": "HTML",
+					"viewName": "Gmaps"
+				}
 			}
 		}
 	}

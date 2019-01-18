@@ -48,7 +48,7 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "SDI",
+        "name": "SDI1709",
         "entryPath": "/sap/opu/odata"
       },
       "description": "SDI"

@@ -47,6 +47,7 @@
 							<m:Button text="Live" type="Accept" press="onStart" width="5.5cm" visible="false" id="btnStart"></m:Button>
 							<m:Button text="Stop" type="Reject" press="onExit" width="5.5cm" visible="false" id="btnStop" enabled="false"></m:Button>
 						</m:HBox>
+						<m:Button text="Track" press="gmapTrack" width="11cm" id="btnTrack" visible="false" class="sapUiMediumMarginBegin"></m:Button>
 					</m:VBox>
 				</layout:fixContent>
 				<layout:flexContent>

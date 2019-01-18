@@ -15,7 +15,8 @@ sap.ui.define([
 		 * @memberOf ts.zrefill.view.Analytics
 		 */
 		onInit: function () {
-
+			
+			
 			this.getOwnerComponent().getRouter().getRoute("anlytics").attachPatternMatched(this._onMatched, this);
 
 		},
@@ -29,6 +30,7 @@ sap.ui.define([
 		},
 
 		lineFunc: function (oKey) {
+			this.getView().byId('btnTrack').setVisible(false);
 			var oModel = new sap.ui.model.odata.ODataModel(
 				'/com.sap.iotservices.mms/v1/api/http/app.svc', true);
 			var oArray;
@@ -61,9 +63,10 @@ sap.ui.define([
 			var flag = 0;
 
 			for (var i = 0; i < oArray.length; i++) {
+				flag = 0;
 				var oPoint = new sap.suite.ui.microchart.InteractiveLineChartPoint();
 				var FC_LEVEL = parseFloat(lCdata[i].level);
-				if (FC_LEVEL < 3.0) { //Threshold is 3.0
+				if (FC_LEVEL < 190.0) { //Threshold is 190.0
 					oPoint.setColor("Critical");
 					flag = 1;
 				}
@@ -96,6 +99,22 @@ sap.ui.define([
 			this.getView().byId("btnStop").setEnabled(false);
 			this.getView().byId("btnStart").setEnabled();
 			intervalHandle = " ";
+		},
+		gmapTrack: function () {
+			// alert()
+			var id;
+			var c_veh = "VEH1";
+			if (c_veh == "VEH1")
+				id = "d196f6b4-a5c8-4873-b1b9-ad89b2e6c211";
+			else
+				id = "3fbe0032-e802-406a-9b9d-552d2f94d3b3";
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("RouteView1", {
+				ids: id,
+				SO: "2000",
+				STo: "Hello",
+				SDate: "20-10-2020"
+			});
 		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -210,105 +229,106 @@ sap.ui.define([
 				} else {
 					resultArr[index].Level += Number(this.C_LEVEL);
 					resultArr[index].Sales += (Number(this.C_LEVEL) * 40);
-				} });
-				var oModelIbar = new sap.ui.model.json.JSONModel();
-				oModelIbar.setData({
-					data: resultArr
-				});
+				}
+			});
+			var oModelIbar = new sap.ui.model.json.JSONModel();
+			oModelIbar.setData({
+				data: resultArr
+			});
 			var oJSONModel = that.getOwnerComponent().getModel("json");
 			oJSONModel.setProperty("/actModel", resultArr);
-				// var ointeractive = that.getView().byId("interactiveLineChart");
-				// // ointeractive.setVizType("dual_timeseries_combination");
-				// // A Dataset defines how the model data is mapped to the chart
-				// var oDataset = new sap.viz.ui5.data.FlattenedDataset({
-				// 	// a Bar Chart requires exactly one dimension (x-axis)
-				// 	dimensions: [{
-				// 		// axis: 1, // must be one for the x-axis, 2 for y-axis
-				// 		name: 'Date',
-				// 		value: "{Date}",
-				// 		dataType: "date"
-				// 	}],
-				// 	// it can show multiple measures, each results in a new set of bars in a new color
-				// 	measures: [
-				// 		// measure 1
-				// 		{
-				// 			name: 'Level',
-				// 			value: "{Level}"
-				// 		} 
-				// 		// {
-				// 		// 	name: "Sales",
-				// 		// 	value: "{Sales}"
-				// 		// }
-				// 	],
-				// 	// 'data' is used to bind the whole data collection that is to be displayed in the chart
-				// 	data: {
-				// 		path: "/data"
-				// 	}
-				// });
-    // 			ointeractive.setModel(oModelIbar);
-    // 			ointeractive.setDataset(oDataset);
-				// ointeractive.setVizProperties({
-				// 	plotArea: {
-				// 		window: {
-				// 			start: "firstDataPoint",
-				// 			end: "lastDataPoint"
-				// 		},
-				// 		dataLabel: {
-				// 			formatString: ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
-				// 			visible: false
-				// 		}
-				// 	},
-				// 	valueAxis: {
-				// 		visible: true,
-				// 		label: {
-				// 			formatString: ChartFormatter.DefaultPattern.SHORTFLOAT
-				// 		},
-				// 		title: {
-				// 			visible: false
-				// 		}
-				// 	},
-				// 	valueAxis2: {
-				// 		visible: true,
-				// 		label: {
-				// 			formatString: ChartFormatter.DefaultPattern.SHORTFLOAT
-				// 		},
-				// 		title: {
-				// 			visible: false
-				// 		}
-				// 	},
-				// 	timeAxis: {
-				// 		title: {
-				// 			visible: false
-				// 		},
-				// 		interval: {
-				// 			unit: ''
-				// 		}
-				// 	},
-				// 	title: {
-				// 		visible: false
-				// 	},
-				// 	interaction: {
-				// 		syncValueAxis: false
-				// 	}
-				// });
-				// var feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
-				// 	'uid': "valueAxis",
-				// 	'type': "Measure",
-				// 	'values': ["Level"]
-				// });
-				// var feedValueAxis2 = new sap.viz.ui5.controls.common.feeds.FeedItem({
-				// 	'uid': "valueAxis2",
-				// 	'type': "Measure",
-				// 	'values': ["Sales"]
-				// });
-				// var feedTimeAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
-				// 	'uid': "timeAxis",
-				// 	'type': "Dimension",
-				// 	'values': ["Date"]
-				// });
-				// ointeractive.addFeed(feedValueAxis);
-				// ointeractive.addFeed(feedValueAxis2);
-				// ointeractive.addFeed(feedTimeAxis);
+			// var ointeractive = that.getView().byId("interactiveLineChart");
+			// // ointeractive.setVizType("dual_timeseries_combination");
+			// // A Dataset defines how the model data is mapped to the chart
+			// var oDataset = new sap.viz.ui5.data.FlattenedDataset({
+			// 	// a Bar Chart requires exactly one dimension (x-axis)
+			// 	dimensions: [{
+			// 		// axis: 1, // must be one for the x-axis, 2 for y-axis
+			// 		name: 'Date',
+			// 		value: "{Date}",
+			// 		dataType: "date"
+			// 	}],
+			// 	// it can show multiple measures, each results in a new set of bars in a new color
+			// 	measures: [
+			// 		// measure 1
+			// 		{
+			// 			name: 'Level',
+			// 			value: "{Level}"
+			// 		} 
+			// 		// {
+			// 		// 	name: "Sales",
+			// 		// 	value: "{Sales}"
+			// 		// }
+			// 	],
+			// 	// 'data' is used to bind the whole data collection that is to be displayed in the chart
+			// 	data: {
+			// 		path: "/data"
+			// 	}
+			// });
+			// 			ointeractive.setModel(oModelIbar);
+			// 			ointeractive.setDataset(oDataset);
+			// ointeractive.setVizProperties({
+			// 	plotArea: {
+			// 		window: {
+			// 			start: "firstDataPoint",
+			// 			end: "lastDataPoint"
+			// 		},
+			// 		dataLabel: {
+			// 			formatString: ChartFormatter.DefaultPattern.SHORTFLOAT_MFD2,
+			// 			visible: false
+			// 		}
+			// 	},
+			// 	valueAxis: {
+			// 		visible: true,
+			// 		label: {
+			// 			formatString: ChartFormatter.DefaultPattern.SHORTFLOAT
+			// 		},
+			// 		title: {
+			// 			visible: false
+			// 		}
+			// 	},
+			// 	valueAxis2: {
+			// 		visible: true,
+			// 		label: {
+			// 			formatString: ChartFormatter.DefaultPattern.SHORTFLOAT
+			// 		},
+			// 		title: {
+			// 			visible: false
+			// 		}
+			// 	},
+			// 	timeAxis: {
+			// 		title: {
+			// 			visible: false
+			// 		},
+			// 		interval: {
+			// 			unit: ''
+			// 		}
+			// 	},
+			// 	title: {
+			// 		visible: false
+			// 	},
+			// 	interaction: {
+			// 		syncValueAxis: false
+			// 	}
+			// });
+			// var feedValueAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+			// 	'uid': "valueAxis",
+			// 	'type': "Measure",
+			// 	'values': ["Level"]
+			// });
+			// var feedValueAxis2 = new sap.viz.ui5.controls.common.feeds.FeedItem({
+			// 	'uid': "valueAxis2",
+			// 	'type': "Measure",
+			// 	'values': ["Sales"]
+			// });
+			// var feedTimeAxis = new sap.viz.ui5.controls.common.feeds.FeedItem({
+			// 	'uid': "timeAxis",
+			// 	'type': "Dimension",
+			// 	'values': ["Date"]
+			// });
+			// ointeractive.addFeed(feedValueAxis);
+			// ointeractive.addFeed(feedValueAxis2);
+			// ointeractive.addFeed(feedTimeAxis);
 			// });
 		}
 

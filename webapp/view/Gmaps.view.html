@@ -1,0 +1,35 @@
+<template data-controller-name="ts.zrefill.controller.Gmaps">
+	<div data-sap-ui-type="sap.m.App">
+		<!--<div data-sap-ui-type="sap.m.Page" data-title="Sense and Stock">-->
+		<div data-sap-ui-type="sap.m.Page" data-title="Sense and Stock">
+			<div data-sap-ui-aggregation="content">
+                <div class="w3-bar w3-black">
+					<div class="w3-bar-item w3-hover-dark ip" id="eta">
+						<u>ETA:</u><br>
+					</div>
+					<div class="w3-bar-item w3-hover-dark ip diff" id="distance">
+						<u>Distance:</u><br>
+					</div>
+					<div class="w3-bar-item w3-hover-dark ip" id="long">
+						<u>long:</u><br>
+					</div>
+					<div class="w3-bar-item w3-hover-dark ip diff" id="lat">
+						<u>lat:</u><br>
+					</div>
+				</div>
+				<div class="w3-bar w3-black">
+					<div class="w3-bar-item w50 w3-hover-dark" id="origin">
+						<u>Current Address:</u><br>
+					</div>
+					<div class="w3-bar-item w50 w3-hover-dark diff" id="destination">
+						<u>Destination Address:</u><br>
+					</div>
+				</div>
+                <div id="map" style="width:90%; height:18cm; margin-left:5%"></div>
+                <div class="w3-bar w3-black">
+                    <div style="height:20px;"></div>
+				</div>
+            </div>
+        </div>
+    </div>
+</template>
